@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { isValidDate } = require("./utils.js");
 
 const app = express();
 
@@ -12,11 +13,22 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/:date?", (req, res) => {
-  const date = isNaN(req.params.date)
-    ? new Date(req.params.date)
-    : new Date(Number(req.params.date));
+  const dateStr = req.params.date;
+  let dateObj;
 
-  res.json({ unix: date.getTime(), utc: date.toUTCString() });
+  if (!dateStr) {
+    dateObj = new Date();
+  } else if (isNaN(dateStr)) {
+    dateObj = new Date(dateStr);
+  } else {
+    dateObj = new Date(Number(dateStr));
+  }
+
+  if (!isValidDate(dateObj)) {
+    res.json({ error: "Invalid Date" });
+  }
+
+  res.json({ unix: dateObj.getTime(), utc: dateObj.toUTCString() });
 });
 
 module.exports = app;
