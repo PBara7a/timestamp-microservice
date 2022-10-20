@@ -11,4 +11,12 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+app.get("/api/:date?", (req, res) => {
+  const date = isNaN(req.params.date)
+    ? new Date(req.params.date)
+    : new Date(Number(req.params.date));
+
+  res.json({ unix: date.getTime(), utc: date.toUTCString() });
+});
+
 module.exports = app;
