@@ -5,15 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start-dev": "nodemon index.js",
-    "deploy": "gh-pages -d ."
+    "start-dev": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.0",
     "dotenv": "^16.0.3",
     "express": "^4.12.4"
   },
-  "homepage": "https://pbara7a.github.io/timestamp-microservice/",
+  "homepage": "https://timestamp-microservice-skas.onrender.com/",
   "author": "Paulo Barata",
   "keywords": [
     "node",
@@ -23,7 +22,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "gh-pages": "^4.0.0",
     "nodemon": "^2.0.20"
   }
 }
